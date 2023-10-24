@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J5Q+dmMzYJnuZbmzGdoBJ7gHSMoEhvAycr0I8Z+pRGM8qwc4QsQpnRVEd7DTnrp9/h0RgOXDGoNzBL6h4IN9mQ==",
+  "dgSpecHash": "/u+dyfl7fB+8+I47b3oCfEx7RrAM4+bOYH3lLWBmOYCjafpiJqDgwrr8EpVkZFtkFND9g3XR3y6Is5bRdXFi0A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
+  "projectFilePath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khush\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\khush\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

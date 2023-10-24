@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {}
+    "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {
+    "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
+        "projectUniqueName": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
         "projectName": "Bloggie.Web",
-        "projectPath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
+        "projectPath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\Bloggie.Web.csproj",
         "packagesPath": "C:\\Users\\khush\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\Bloggie\\Bloggie.Web\\obj\\",
+        "outputPath": "C:\\Users\\khush\\source\\repos\\C# .NET Projects\\FullStackProjects\\Bloggie\\Bloggie.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
