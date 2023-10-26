@@ -104,5 +104,49 @@ namespace Bloggie.Web.Controllers
             return RedirectToAction("Edit", new { id = editTagRequest.Id }); //stay on edit page with id passed !
             
         }
+
+        //extra method for Delete button on List Oftags page
+        //[HttpPost]
+        //public IActionResult Delete(Guid id)
+        //{
+        //    Console.WriteLine("Inside the Delete Method! -- 1");
+        //    var existingTag = _blogieDbContext.Tags.SingleOrDefault(t => t.Id == id);
+
+        //    if (existingTag != null)
+        //    {
+        //        _blogieDbContext.Tags.Remove(existingTag);
+        //        _blogieDbContext.SaveChanges();
+        //        Console.WriteLine("Inside the Delete Method!");
+        //        //sucess return to list of tags
+        //        Console.WriteLine("Inside the Delete Method! -- 2");
+        //        return RedirectToAction("ListofTags");
+        //    }
+        //    //failure to delete!
+        //    Console.WriteLine("Inside the Delete Method! -- 3");
+        //    return View(null);
+        //}
+
+        [HttpPost]
+        public IActionResult Delete(EditTagRequest editTagRequest)
+        {
+            var tag = new Tag()
+            {
+                Id = editTagRequest.Id,
+                Name = editTagRequest.Name,
+                DisplayName = editTagRequest.DisplayName,
+            };
+
+            if (tag != null)
+            {
+                _blogieDbContext.Tags.Remove(tag);
+                _blogieDbContext.SaveChanges();
+
+                //sucess return to list of tags
+                return RedirectToAction("ListofTags");
+            }
+            //failure to delete!
+
+            return RedirectToAction("Edit", new { Id = editTagRequest.Id });
+        }
     }
 }
