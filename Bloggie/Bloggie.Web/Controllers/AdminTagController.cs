@@ -2,6 +2,7 @@
 using Bloggie.Web.Models.Domain;
 using Bloggie.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bloggie.Web.Controllers
 {
@@ -22,7 +23,7 @@ namespace Bloggie.Web.Controllers
 
         [HttpPost]
         [ActionName("Add")]
-        public IActionResult Add(AddTagRequest addTagRequest)
+        public async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
             //mapping addtagRequest to the Tag Domain Model
             var tag = new Tag() //saving data to the tags table!
@@ -32,30 +33,30 @@ namespace Bloggie.Web.Controllers
             };
             //_blogieDbContext.Tags.Add(new Models.Domain.Tag() { Name = addTagRequest.Name, DisplayName = addTagRequest.DisplayName });
 
-            _blogieDbContext.Tags.Add(tag);
-            _blogieDbContext.SaveChanges();
+            await _blogieDbContext.Tags.AddAsync(tag);
+            await _blogieDbContext.SaveChangesAsync();
 
             return RedirectToAction("ListofTags");
         }
 
         [HttpGet]
         [ActionName("ListofTags")]
-        public IActionResult ListofTags() {
+        public async Task<IActionResult> ListofTags() {
 
             //use _DBcontext to read the Tags data from table!
-            var listofTags = _blogieDbContext.Tags.ToList();
+            var listofTags = await _blogieDbContext.Tags.ToListAsync();
             return View(listofTags);
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id) //name same as what defined in the asp-route-id!
+        public async Task<IActionResult> Edit(Guid id) //name same as what defined in the asp-route-id!
         {
 
             //1st Method
             //var tag = _blogieDbContext.Tags.Find(id);
 
             //2nd Method
-            var tag = _blogieDbContext.Tags.SingleOrDefault(t => t.Id == id); //or also can use firstordefault
+            var tag = await _blogieDbContext.Tags.SingleOrDefaultAsync(t => t.Id == id); //or also can use firstordefault
 
             //ModelBinding
             if (tag != null)
@@ -76,7 +77,7 @@ namespace Bloggie.Web.Controllers
 
         [HttpPost]
         
-        public IActionResult Edit(EditTagRequest editTagRequest)
+        public async Task<IActionResult> Edit(EditTagRequest editTagRequest)
         {
             //mapping addtagRequest to the Tag Domain Model
             var updatedTag = new Tag() //saving data to the tags table!
@@ -87,7 +88,7 @@ namespace Bloggie.Web.Controllers
             };
             //_blogieDbContext.Tags.Add(new Models.Domain.Tag() { Name = addTagRequest.Name, DisplayName = addTagRequest.DisplayName });
 
-            var existingTag = _blogieDbContext.Tags.Find(updatedTag.Id);
+            var existingTag = await _blogieDbContext.Tags.FindAsync(updatedTag.Id);
 
             if(existingTag != null)
             {
@@ -95,7 +96,7 @@ namespace Bloggie.Web.Controllers
                 existingTag.DisplayName = updatedTag.DisplayName;
 
                 //save changes
-                _blogieDbContext.SaveChanges();
+                await _blogieDbContext.SaveChangesAsync();
 
                 //show success notification
                 return RedirectToAction("ListofTags"); //back to the list page
@@ -127,7 +128,7 @@ namespace Bloggie.Web.Controllers
         //}
 
         [HttpPost]
-        public IActionResult Delete(EditTagRequest editTagRequest)
+        public async Task<IActionResult> Delete(EditTagRequest editTagRequest)
         {
             var tag = new Tag()
             {
@@ -139,7 +140,8 @@ namespace Bloggie.Web.Controllers
             if (tag != null)
             {
                 _blogieDbContext.Tags.Remove(tag);
-                _blogieDbContext.SaveChanges();
+               
+                await _blogieDbContext.SaveChangesAsync();
 
                 //sucess return to list of tags
                 return RedirectToAction("ListofTags");
