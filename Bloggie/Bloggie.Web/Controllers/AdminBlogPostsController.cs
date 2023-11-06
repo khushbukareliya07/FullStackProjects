@@ -1,4 +1,5 @@
-﻿using Bloggie.Web.Models.ViewModels;
+﻿using Bloggie.Web.Models.Domain;
+using Bloggie.Web.Models.ViewModels;
 using Bloggie.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,9 +12,12 @@ namespace Bloggie.Web.Controllers
         //constructor injection
 
         private readonly ITagRepository _tagRepository;
-        public AdminBlogPostsController(ITagRepository tagRepository)
+        private readonly IBlogPostRepository _blogPostRepository;
+
+        public AdminBlogPostsController(ITagRepository tagRepository, IBlogPostRepository blogPostRepository)
         {
             _tagRepository = tagRepository;
+            _blogPostRepository = blogPostRepository;
         }
 
 
@@ -36,6 +40,25 @@ namespace Bloggie.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddBlogPostRequest addBlogPostRequest)
         {
+
+            //map view model to Domain model
+
+            var blogPostDomainModel = new BlogPost();
+
+            blogPostDomainModel.Heading = addBlogPostRequest.Heading;
+            blogPostDomainModel.PageTitle = addBlogPostRequest.PageTitle;
+            blogPostDomainModel.Content = addBlogPostRequest.Content;
+            blogPostDomainModel.ShortDescription = addBlogPostRequest.ShortDescription;
+            blogPostDomainModel.FeaturedImageUrl = addBlogPostRequest.FeaturedImageUrl;
+            blogPostDomainModel.UrlHandle = addBlogPostRequest.UrlHandle;
+            blogPostDomainModel.PublishedDate  = addBlogPostRequest.PublishedDate;
+            blogPostDomainModel.Author  = addBlogPostRequest.Author;
+            blogPostDomainModel.Visible = addBlogPostRequest.Visible;
+
+            //tags are of IEnumerable in domain but selectListItems in VIew, so we have to loop through selected to assign those
+            foreach(var sele)
+
+            await _blogPostRepository.AddAsync();
             return RedirectToAction("Add");
         }
     }
