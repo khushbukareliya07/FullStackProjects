@@ -73,7 +73,15 @@ namespace Bloggie.Web.Controllers
             blogPostDomainModel.Tags = listOfTags;
 
             await _blogPostRepository.AddAsync(blogPostDomainModel);
-            return RedirectToAction("Add");
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            //call repository
+            var ListOfBlogs = await _blogPostRepository.GetAllAsync();
+            return View(ListOfBlogs);
         }
     }
 }
