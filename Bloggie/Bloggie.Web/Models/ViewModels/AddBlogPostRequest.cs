@@ -4,8 +4,7 @@ namespace Bloggie.Web.Models.ViewModels
 {
     public class AddBlogPostRequest
     {
-        public string Title { get; set; }
-
+        
         public string Heading { get; set; }
 
         public string PageTitle { get; set; }
